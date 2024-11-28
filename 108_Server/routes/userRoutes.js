@@ -1,12 +1,15 @@
 import express from 'express';
-import { getUsers, createUser } from '../controllers/userController.js';
 
 const router = express.Router();
 
-// GET: קבלת רשימת משתמשים
-router.get('/', getUsers);
-
-// POST: יצירת משתמש חדש
-router.post('/', createUser);
+// נתיב POST - יצירת משתמש
+router.post('/', (req, res) => {
+    const { name, email, password } = req.body;
+    res.status(201).json({
+        message: 'User created successfully',
+        user: { name, email }
+    });
+});
 
 export default router;
+

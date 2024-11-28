@@ -1,8 +1,13 @@
 {
-  "name": "108_server",
+  "name": "108_Server",
   "version": "1.0.0",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0"
   }
 }
