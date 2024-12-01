@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LogInView.css";
+import { useNavigate } from "react-router-dom"; 
 
 const LogInView = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -7,6 +8,7 @@ const LogInView = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const toggleMode = () => {
     setTransitionClass("slide-out");
@@ -24,9 +26,11 @@ const LogInView = () => {
     if (isSignUp && password !== confirmPassword) {
       alert("Passwords do not match!");
     } else {
-      alert(`${isSignUp ? "Sign Up" : "Log In"} Successful!`);
+      navigate("/products");
+      console.log("Navigating to products...");
     }
   };
+  
 
   return (
     <div>
