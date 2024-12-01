@@ -1,4 +1,4 @@
-import User from '../models/userModel.js';
+import User from '../models/userModel';
 
 // קבלת רשימת משתמשים
 export const getUsers = async (req, res) => {
