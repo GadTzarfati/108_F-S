@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LogInView.css";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 const LogInView = () => {
   const [isSignUp, setIsSignUp] = useState(false);
