@@ -30,7 +30,6 @@ const LogInView = () => {
       console.log("Navigating to products...");
     }
   };
-  
 
   return (
     <div>
