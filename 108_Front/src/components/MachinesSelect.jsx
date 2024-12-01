@@ -7,19 +7,19 @@ const MachinesSelect = () => {
             id: 1,
             name: "Device A",
             description: "High-performance device for SSH and Telnet connections.",
-            image: "/images/device-a.jpg",
+            image: "https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         },
         {
             id: 2,
             name: "Device B",
             description: "Ideal for chip debugging with advanced features.",
-            image: "/images/device-b.jpg",
+            image: "https://images.pexels.com/photos/1472443/pexels-photo-1472443.jpeg?auto=compress&cs=tinysrgb&w=800",
         },
         {
             id: 3,
             name: "Device C",
             description: "Optimized for real-time CLI operations.",
-            image: "/images/device-c.jpg",
+            image: "https://images.pexels.com/photos/6755091/pexels-photo-6755091.jpeg?auto=compress&cs=tinysrgb&w=800",
         },
     ];
 
