@@ -1,6 +1,6 @@
 import User from '../models/userModel';
 
-// קבלת רשימת משתמשים
+
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -10,7 +10,7 @@ export const getUsers = async (req, res) => {
   }
 };
 
-// יצירת משתמש חדש
+
 export const createUser = async (req, res) => {
   const { name, email, password} = req.body;
 
