@@ -12,11 +12,12 @@ export const getUsers = async (req, res) => {
 
 // יצירת משתמש חדש
 export const createUser = async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, password} = req.body;
 
   const newUser = new User({
     name,
     email,
+    password,
   });
 
   try {
