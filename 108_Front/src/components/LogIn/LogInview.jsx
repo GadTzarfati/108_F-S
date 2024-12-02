@@ -21,13 +21,44 @@ const LogInView = () => {
     }, 500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isSignUp && password !== confirmPassword) {
       alert("Passwords do not match!");
-    } else {
-      navigate("/products");
-      console.log("Navigating to products...");
+      return;
+    }
+
+    const url = isSignUp
+      ? "http://localhost:5000/api/users/register" // נתיב להרשמה
+      : "http://localhost:5000/api/users/login"; // נתיב להתחברות
+
+    const payload = isSignUp
+      ? { email, password } // בקשת הרשמה
+      : { email, password }; // בקשת התחברות
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload), // שליחת הנתונים לשרת
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(isSignUp ? "Sign Up successful!" : "Login successful!");
+        if (!isSignUp) {
+          navigate("/products");
+        }
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
@@ -44,6 +75,8 @@ const LogInView = () => {
                   type="text"
                   id="name"
                   placeholder="Enter your name"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             )}
