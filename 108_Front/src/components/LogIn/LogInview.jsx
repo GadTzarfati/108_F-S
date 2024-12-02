@@ -5,36 +5,41 @@ import { useNavigate } from "react-router-dom";
 const LogInView = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [transitionClass, setTransitionClass] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState(""); // מצב לשם
+  const [email, setEmail] = useState(""); // מצב למייל
+  const [password, setPassword] = useState(""); // מצב לסיסמה
+  const [confirmPassword, setConfirmPassword] = useState(""); // מצב לאימות סיסמה
+  const [error, setError] = useState(""); // מצב לשגיאות
   const navigate = useNavigate();
 
   const toggleMode = () => {
     setTransitionClass("slide-out");
     setTimeout(() => {
       setIsSignUp((prev) => !prev);
+      setName(""); // איפוס שם
+      setEmail(""); // איפוס אימייל
+      setPassword(""); // איפוס סיסמה
+      setConfirmPassword(""); // איפוס אימות סיסמה
+      setError(""); // איפוס הודעת שגיאה
       setTransitionClass("slide-in");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
     }, 500);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // איפוס שגיאות בתחילת הבקשה
 
     if (isSignUp && password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setError("Passwords do not match!");
       return;
     }
 
     const url = isSignUp
-      ? "http://localhost:5000/api/users/register" // נתיב להרשמה
-      : "http://localhost:5000/api/users/login"; // נתיב להתחברות
+      ? "http://localhost:5000/api/users" // נתיב הרשמה
+      : "http://localhost:5000/api/users/login"; // נתיב התחברות
 
     const payload = isSignUp
-      ? { email, password } // בקשת הרשמה
+      ? { name, email, password } // בקשת הרשמה
       : { email, password }; // בקשת התחברות
 
     try {
@@ -49,16 +54,18 @@ const LogInView = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert(isSignUp ? "Sign Up successful!" : "Login successful!");
-        if (!isSignUp) {
+        if (isSignUp) {
+          setIsSignUp(false); // מעבר למצב לוג-אין
+          setError("Registration successful! Please log in.");
+        } else {
           navigate("/products");
         }
       } else {
-        alert(`Error: ${data.message}`);
+        setError(data.message || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again.");
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -75,8 +82,9 @@ const LogInView = () => {
                   type="text"
                   id="name"
                   placeholder="Enter your name"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
             )}
@@ -88,6 +96,7 @@ const LogInView = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -98,6 +107,7 @@ const LogInView = () => {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             {isSignUp && (
@@ -109,12 +119,14 @@ const LogInView = () => {
                   placeholder="Confirm your password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
               </div>
             )}
             <button type="submit" className="submit-button">
               {isSignUp ? "Sign Up" : "Log In"}
             </button>
+            {error && <p className="error-text">{error}</p>} {/* הצגת הודעת השגיאה */}
           </form>
           <p className="toggle-text">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
