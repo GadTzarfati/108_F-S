@@ -5,29 +5,29 @@ import { useNavigate } from "react-router-dom";
 const LogInView = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [transitionClass, setTransitionClass] = useState("");
-  const [name, setName] = useState(""); // מצב לשם
-  const [email, setEmail] = useState(""); // מצב למייל
-  const [password, setPassword] = useState(""); // מצב לסיסמה
-  const [confirmPassword, setConfirmPassword] = useState(""); // מצב לאימות סיסמה
-  const [error, setError] = useState(""); // מצב לשגיאות
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const toggleMode = () => {
     setTransitionClass("slide-out");
     setTimeout(() => {
       setIsSignUp((prev) => !prev);
-      setName(""); // איפוס שם
-      setEmail(""); // איפוס אימייל
-      setPassword(""); // איפוס סיסמה
-      setConfirmPassword(""); // איפוס אימות סיסמה
-      setError(""); // איפוס הודעת שגיאה
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setError("");
       setTransitionClass("slide-in");
     }, 500);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // איפוס שגיאות בתחילת הבקשה
+    setError("");
 
     if (isSignUp && password !== confirmPassword) {
       setError("Passwords do not match!");
@@ -35,12 +35,12 @@ const LogInView = () => {
     }
 
     const url = isSignUp
-      ? "http://localhost:5000/api/users" // נתיב הרשמה
-      : "http://localhost:5000/api/users/login"; // נתיב התחברות
+      ? "http://localhost:5000/api/users"
+      : "http://localhost:5000/api/users/login";
 
     const payload = isSignUp
-      ? { name, email, password } // בקשת הרשמה
-      : { email, password }; // בקשת התחברות
+      ? { name, email, password }
+      : { email, password };
 
     try {
       const response = await fetch(url, {
@@ -48,14 +48,14 @@ const LogInView = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload), // שליחת הנתונים לשרת
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         if (isSignUp) {
-          setIsSignUp(false); // מעבר למצב לוג-אין
+          setIsSignUp(false);
           setError("Registration successful! Please log in.");
         } else {
           navigate("/products");
@@ -126,7 +126,7 @@ const LogInView = () => {
             <button type="submit" className="submit-button">
               {isSignUp ? "Sign Up" : "Log In"}
             </button>
-            {error && <p className="error-text">{error}</p>} {/* הצגת הודעת השגיאה */}
+            {error && <p className="error-text">{error}</p>}
           </form>
           <p className="toggle-text">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
