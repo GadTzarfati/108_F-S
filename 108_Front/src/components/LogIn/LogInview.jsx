@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './LogInView.css';
 import { useNavigate } from 'react-router-dom';
 
+
 const LogInView = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
