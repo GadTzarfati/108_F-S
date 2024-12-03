@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonSSH from "../All-function/ButtonSSH";
+
 
 const MachinA = () => {
     const products = 
