@@ -1,7 +1,7 @@
 import React from "react";
-import MachinA from "../MachinA";
-import MachinB from "../MachinB";
-import MachinC from "../MachinC";
+import MachinA from "../Machines/MachinA";
+import MachinB from "../Machines/MachinB";
+import MachinC from "../Machines/MachinC";
 
 const MachinesSelect = () => {
     return (
