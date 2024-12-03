@@ -4,6 +4,7 @@ import LogInview from './components/LogIn/LogInview'
 import MachinesSelect from "./components/machine-selection/MachinesSelect";
 import './StyleCss/LogInview.css'
 import './StyleCss/MachinesSelect.css';  
+import './StyleCss/ButtonSSH.css';
 
 const AppRouter = () => {
   return (
