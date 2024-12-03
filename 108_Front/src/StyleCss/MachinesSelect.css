@@ -9,10 +9,11 @@ body {
 /* מיכל הכרטיסיות */
 .product-cards-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  flex-wrap: nowrap; /* לא מאפשר ירידה לשורה הבאה */
+  justify-content: space-between; /* רווחים שווים בין הכרטיסיות */
+  gap: 20px; /* רווחים בין הכרטיסיות */
   padding: 40px;
+  overflow-x: auto; /* מאפשר גלילה אופקית אם יש יותר מדי כרטיסיות */
 }
 
 /* כרטיסיה בודדת */
