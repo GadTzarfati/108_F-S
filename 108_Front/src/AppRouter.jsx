@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import LogInview from './components/LogIn/LogInview'
 import MachinesSelect from "./components/machine-selection/MachinesSelect";
+import './/StyleCss/LogInview.css';
+import './/StyleCss/MachinesSelect.css';  
 
 const AppRouter = () => {
   return (

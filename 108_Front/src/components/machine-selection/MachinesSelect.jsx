@@ -1,5 +1,4 @@
 import React from "react";
-import "./MachinesSelect.css";
 
 const MachinesSelect = () => {
     const products = [
