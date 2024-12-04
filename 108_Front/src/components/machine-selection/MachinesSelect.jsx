@@ -8,7 +8,7 @@ const MachinesSelect = () => {
         <div className="product-cards-container">
         <MachinA />
         <MachinB />
-        <MachinC />
+        <MachinC /> 
         </div>
     );
 };

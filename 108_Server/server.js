@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './src/routes/userRoutes.js';
+import sshRouter from './src/routes/sshRoutes.js'; // ייבוא הנתיב ל-SSH
+import cliRouter from './src/routes/cliRoutes.js';
 
 // קריאת קובץ .env
 dotenv.config();
@@ -10,8 +12,8 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors()); // לטיפול ב-CORS
-app.use(express.json()); // לטיפול בנתונים בפורמט JSON
+app.use(cors());
+app.use(express.json());
 
 // חיבור ל-MongoDB
 mongoose
@@ -19,11 +21,13 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
-    process.exit(1); // עצור את השרת אם החיבור נכשל
+    process.exit(1);
   });
 
 // חיבור נתיבים
 app.use('/api/users', userRouter);
+app.use('/api/ssh', sshRouter);
+app.use('/api/cli', cliRouter); 
 
 // ניהול שגיאות גלובלי
 app.use((err, req, res, next) => {
@@ -35,4 +39,4 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
-}); 
+});

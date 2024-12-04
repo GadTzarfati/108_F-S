@@ -1,10 +1,18 @@
 import React from "react";
+import axios from "axios";
 
-
-const ButtonSSH = ({ onClick }) => {
-  const handleClick = () => {
-    if (onClick) {
-      onClick(); // פעולה מותאמת אישית
+const ButtonSSH = () => {
+  const handleClick = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/ssh", {
+        host: "192.168.1.100", // כתובת השרת המרוחק
+        username: "user", // שם המשתמש שלך
+        password: "password", // סיסמת SSH
+        command: "uptime", // פקודה להרצה
+      });
+      console.log("SSH Response:", response.data); // תוצאה מהשרת
+    } catch (error) {
+      console.error("Error connecting to SSH:", error.response?.data || error.message);
     }
   };
 
@@ -19,3 +27,4 @@ const ButtonSSH = ({ onClick }) => {
 };
 
 export default ButtonSSH;
+
