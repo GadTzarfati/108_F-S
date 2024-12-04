@@ -5,6 +5,8 @@ import MachinesSelect from "./components/machine-selection/MachinesSelect";
 import './StyleCss/LogInview.css'
 import './StyleCss/MachinesSelect.css';  
 import './StyleCss/ButtonSSH.css';
+import './StyleCss/ButtonCLI.css';
+import './StyleCss/ButtonTELNET.css';
 
 const AppRouter = () => {
   return (

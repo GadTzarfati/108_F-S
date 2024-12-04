@@ -4,6 +4,7 @@
     align-items: center;
     gap: 1px; /* רווח קטן יותר בין האייקון לטקסט */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* אפקט אחיד */
+    cursor: pointer;
   }
   
   .button-ssh-container:hover {

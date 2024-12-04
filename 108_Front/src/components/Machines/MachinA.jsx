@@ -1,4 +1,7 @@
 import React from "react";
+import ButtonCLI from "../All-function/ButtonCLI";
+import ButtonTELNET from "../All-function/ButtonTELNET";
+import ButtonSSH from "../All-function/ButtonSSH";
 
 
 const MachinA = () => {
@@ -17,6 +20,9 @@ const MachinA = () => {
                     <h2 className="product-title">{products.name}</h2>
                     <p className="product-description">{products.description}</p>
                 </div>
+                <ButtonCLI />
+                <ButtonTELNET />
+                <ButtonSSH />
         </div>
     );
 };
