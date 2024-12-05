@@ -3,19 +3,19 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './src/routes/userRoutes.js';
-import sshRouter from './src/routes/sshRoutes.js'; // ייבוא הנתיב ל-SSH
+import sshRouter from './src/routes/sshRoutes.js';
 import cliRouter from './src/routes/cliRoutes.js';
+import telnetRouter from './src/routes/telnetRoutes.js';
 
-// קריאת קובץ .env
+
+
 dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// חיבור ל-MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
@@ -27,7 +27,9 @@ mongoose
 // חיבור נתיבים
 app.use('/api/users', userRouter);
 app.use('/api/ssh', sshRouter);
-app.use('/api/cli', cliRouter); 
+app.use('/api/cli', cliRouter);
+app.use('/api/telnet', telnetRouter);
+
 
 // ניהול שגיאות גלובלי
 app.use((err, req, res, next) => {

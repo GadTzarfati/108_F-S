@@ -1,24 +1,33 @@
-import { exec } from 'child_process'; // החלפת require ב-import
+import { exec } from 'child_process';
+import express from 'express';
+import os from 'os';
 
-export const handleCLICommand = (req, res) => {
+const router = express.Router();
+
+export const runCommand = (req, res) => {
   const { command } = req.body;
 
+  // בדיקה אם הפקודה חוקית
   if (!command) {
-    return res.status(400).json({ message: 'Command is required' });
+      return res.status(400).json({ error: 'Command is required' });
   }
 
-  try {
-    exec(command, (error, stdout, stderr) => {
+  const allowedCommands = ['dir', 'ping', 'ipconfig'];
+  if (!allowedCommands.includes(command.split(' ')[0])) {
+      return res.status(403).json({ error: 'Command not allowed' });
+  }
+
+  // הרצת הפקודה
+  exec(command, (error, stdout, stderr) => {
       if (error) {
-        return res.status(500).json({ message: 'Command execution failed', error: error.message });
+          return res.status(500).json({ error: error.message });
       }
       if (stderr) {
-        return res.status(400).json({ message: 'Command execution error', error: stderr });
+          return res.status(400).json({ error: stderr });
       }
-      res.json({ output: stdout.trim() });
-    });
-  } catch (err) {
-    console.error('Error executing CLI command:', err);
-    res.status(500).json({ message: 'An error occurred', error: err.message });
-  }
+      res.status(200).json({ output: stdout });
+  });
 };
+
+
+export default router;
