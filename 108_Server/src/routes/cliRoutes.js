@@ -1,8 +1,8 @@
 import express from 'express';
-import { handleCLICommand } from '../controllers/cliController.js';
+import { runCommand } from '../controllers/cliController.js';
 
 const router = express.Router();
 
-router.post('/execute', handleCLICommand);
+router.post('/', runCommand);
 
 export default router;
