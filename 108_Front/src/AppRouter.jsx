@@ -7,6 +7,7 @@ import './StyleCss/MachinesSelect.css';
 import './StyleCss/ButtonSSH.css';
 import './StyleCss/ButtonCLI.css';
 import './StyleCss/ButtonTELNET.css';
+import MachinA from './components/Machins/MachinA';
 
 const AppRouter = () => {
   return (
@@ -14,8 +15,9 @@ const AppRouter = () => {
       <Routes>
         <Route path='/' element={<LogInview />} />
         <Route path='/products' element={<MachinesSelect />} />
+        <Route path='/products/machin_a' element={<MachinA/>} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   )
 }
 

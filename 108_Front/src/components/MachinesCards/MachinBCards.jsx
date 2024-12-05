@@ -1,6 +1,6 @@
 import React from "react";
 
-const MachinB = () => {
+const MachinBCards = () => {
     const products = 
         {
             id: 2,
@@ -21,4 +21,4 @@ const MachinB = () => {
     );
 };
 
-export default MachinB;
+export default MachinBCards;

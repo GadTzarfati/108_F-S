@@ -1,14 +1,14 @@
 import React from "react";
-import MachinA from "../Machines/MachinA";
-import MachinB from "../Machines/MachinB";
-import MachinC from "../Machines/MachinC";
+import MachinACards from "../MachinesCards/MachinACards";
+import MachinBCards from "../MachinesCards/MachinBCards";
+import MachinCCards from "../MachinesCards/MachinCCards";
 
 const MachinesSelect = () => {
     return (
         <div className="product-cards-container">
-        <MachinA />
-        <MachinB />
-        <MachinC /> 
+        <MachinACards />
+        <MachinBCards />
+        <MachinCCards /> 
         </div>
     );
 };

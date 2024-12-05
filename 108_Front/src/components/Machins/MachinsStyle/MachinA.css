@@ -1,0 +1,48 @@
+/* מיכל עמוד הפרטים */
+.product-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #161932, #5d2b7a);
+    color: #fff;
+    padding: 20px;
+}
+
+/* תמונת המוצר */
+.product-details-image {
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.product-details-image:hover {
+    transform: scale(1.05);
+}
+
+/* כותרת המוצר */
+.product-details-title {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: #2093D2;
+    text-align: center;
+}
+
+/* תיאור המוצר */
+.product-details-description {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 80%;
+}
+.button-container {
+    display: flex; /* סידור אופקי של הילדים */
+    flex-direction: row; /* מוודא שהם מסודרים בשורה */
+    justify-content: center; /* ממרכז את הכפתורים אופקית */
+    align-items: center; /* מיישר אותם אנכית */
+    gap: 20px; /* מוסיף רווח בין הכפתורים */
+    margin-top: 30px; /* רווח עליון מהמוצר */
+}
