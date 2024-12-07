@@ -4,8 +4,8 @@ import axios from "axios";
 const ButtonCLI = () => {
   const handleClick = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/cli/execute", {
-        command: "ls -la", // פקודה לדוגמה
+      const response = await axios.post("http://localhost:5000/api/cli", {
+        command: "dir", // פקודה לדוגמה
       });
       console.log("CLI Response:", response.data);
     } catch (error) {
