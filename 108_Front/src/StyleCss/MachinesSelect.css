@@ -1,11 +1,3 @@
-/* רקע כללי לדף */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #161932, #5d2b7a);
-  color: #fff;
-}
-
 /* מיכל הכרטיסיות */
 .product-cards-container {
   display: flex;
