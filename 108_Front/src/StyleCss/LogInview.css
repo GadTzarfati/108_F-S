@@ -1,16 +1,13 @@
 body {
-  margin: 0;
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #161932, #5d2b7a);
   background-size: 400% 400%;
   animation: gradientMove 10s infinite;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #fff;
   overflow: hidden;
 }
+
 
 .error-text {
   color: red;
