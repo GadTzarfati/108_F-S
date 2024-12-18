@@ -5,15 +5,15 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg, #161932, #5d2b7a);
     color: #fff;
     padding: 20px;
 }
 
 /* תמונת המוצר */
 .product-details-image {
-    width: 30%;
+    width: 500px;
     height: auto;
+    object-fit: contain;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease;
