@@ -5,12 +5,12 @@ const ButtonSSH = () => {
   const handleClick = async () => {
     try {
       const response = await axios.post("http://localhost:5000/api/ssh", {
-        host: "192.168.1.100", // כתובת השרת המרוחק
-        username: "user", // שם המשתמש שלך
-        password: "password", // סיסמת SSH
-        command: "uptime", // פקודה להרצה
+        host: "192.168.1.100", 
+        username: "user", 
+        password: "password", 
+        command: "uptime", 
       });
-      console.log("SSH Response:", response.data); // תוצאה מהשרת
+      console.log("SSH Response:", response.data);
     } catch (error) {
       console.error("Error connecting to SSH:", error.response?.data || error.message);
     }
