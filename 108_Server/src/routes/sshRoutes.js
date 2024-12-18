@@ -1,9 +1,8 @@
 import express from 'express';
-import { handleSSHConnection } from '../controllers/sshController.js'; // ייבוא הבקר
+import { openCommandPrompt } from '../controllers/sshController.js';
 
 const router = express.Router();
 
-// נתיב לטיפול בבקשת POST
-router.post('/', handleSSHConnection);
+router.post('/open-cmd', openCommandPrompt);
 
 export default router;
