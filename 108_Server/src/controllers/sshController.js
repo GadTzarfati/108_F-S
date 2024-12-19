@@ -1,62 +1,38 @@
 import { exec } from 'child_process';
+import path from 'path';
 
-/**
- * 1. פונקציה לפתיחת חלון CMD גלוי למשתמש.
- */
-export const openCommandPrompt = (req, res) => {
-  const command = 'start cmd';
+export const runDockerSSH = (req, res) => {
+  const dockerPath = 'C:\\Users\\v0535\\OneDrive\\שולחן העבודה\\myDocker';
 
-  // שינוי סביבת העבודה של הפקודה לתיקייה myDocker
-  exec(command, { cwd: 'C:\\Users\\v0535\\OneDrive\\שולחן העבודה\\myDocker' }, (error) => {
-    if (error) {
-      console.error(`Error opening Command Prompt: ${error.message}`);
-      return res.status(500).json({
-        message: 'Failed to open Command Prompt',
-        error: error.message,
-      });
-    }
-    res.json({
-      message: 'Command Prompt opened successfully in myDocker folder',
-    });
-  });
-};
+  // משתנה לפקודת הפעלת הקונטיינר
+  const runContainerCommand = `cd /d ${dockerPath} && docker run -p 2222:22 -itd ubuntu-net-tools`;
 
-/**
- * 2. פונקציה להרצת פקודות Docker מאחורי הקלעים והפעלת SSH.
- */
-export const runSshInDocker = (req, res) => {
-  console.log('Starting Docker container...');
-
-  // פקודה להרצת Docker ברקע עם פורט 2222
-  const dockerCommand = 'docker run -d -p 2222:22 --name hidden-ssh ubuntu-net-tools';
-
-  exec(dockerCommand, (error, stdout) => {
+  // הפעלת הקונטיינר
+  exec(runContainerCommand, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error running Docker container: ${error.message}`);
       return res.status(500).json({
-        message: 'Failed to run Docker container',
+        message: 'Failed to start Docker container',
         error: error.message,
       });
     }
 
-    console.log(`Docker container started successfully. Container ID: ${stdout.trim()}`);
+    console.log(`Container started: ${stdout || stderr}`);
 
-    // פקודה לבדוק שהקונטיינר רץ
-    const checkContainer = 'docker ps --filter "name=hidden-ssh" --format "{{.Names}}"';
-
-    exec(checkContainer, (checkError, checkOutput) => {
-      if (checkError || !checkOutput.trim()) {
-        console.error('Container is not running.');
+    // שליפת ה-ID של הקונטיינר
+    const getContainerIdCommand = `docker ps -q -f ancestor=ubuntu-net-tools`;
+    exec(getContainerIdCommand, (idError, containerId) => {
+      if (idError || !containerId.trim()) {
+        console.error(`Error fetching container ID: ${idError?.message || 'No container ID found'}`);
         return res.status(500).json({
-          message: 'Docker container failed to start.',
+          message: 'Failed to fetch container ID',
+          error: idError?.message || 'No container ID found',
         });
       }
 
-      console.log('Container is running. Starting SSH service...');
-
       // הפעלת SSH בתוך הקונטיינר
-      const sshCommand = 'docker exec hidden-ssh service ssh start';
-      exec(sshCommand, (sshError) => {
+      const startSSHCommand = `docker exec ${containerId.trim()} service ssh start`;
+      exec(startSSHCommand, (sshError, sshStdout, sshStderr) => {
         if (sshError) {
           console.error(`Error starting SSH service: ${sshError.message}`);
           return res.status(500).json({
@@ -64,12 +40,24 @@ export const runSshInDocker = (req, res) => {
             error: sshError.message,
           });
         }
-        
 
-        console.log('SSH service started successfully.');
-        res.json({
-          message: 'Docker container and SSH started successfully',
-          connectionInfo: 'Connect using: ssh root@localhost -p 2222',
+        console.log(`SSH service started: ${sshStdout || sshStderr}`);
+
+        // פתיחת חלון CMD נוסף במיקום הראשי של המחשב
+        const openCmdCommand = `start cmd /k "cd /Users"`;
+        exec(openCmdCommand, (cmdError) => {
+          if (cmdError) {
+            console.error(`Error opening CMD: ${cmdError.message}`);
+            return res.status(500).json({
+              message: 'Failed to open CMD window',
+              error: cmdError.message,
+            });
+          }
+
+          console.log('CMD window opened in root directory');
+          res.json({
+            message: 'Docker container started, SSH service initiated, and CMD window opened',
+          });
         });
       });
     });
