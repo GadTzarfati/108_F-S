@@ -1,8 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import ButtonSSH from "../All-function/ButtonSSH";
-import ButtonTELNET from "../All-function/ButtonTELNET";
-import ButtonCLI from "../All-function/ButtonCLI";
 
 const MachinB = () => {
     const location = useLocation();
@@ -23,8 +21,6 @@ const MachinB = () => {
             <p className="product-details-description">{product.description}</p>
             <div className="button-container">
             <ButtonSSH />
-            <ButtonTELNET />
-            <ButtonCLI />
             </div>
         </div>
     );

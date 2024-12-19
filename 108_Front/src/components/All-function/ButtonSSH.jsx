@@ -4,12 +4,7 @@ import axios from "axios";
 const ButtonSSH = () => {
   const handleClick = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/ssh", {
-        host: "192.168.1.100", 
-        username: "user", 
-        password: "password", 
-        command: "uptime", 
-      });
+      const response = await axios.post("http://localhost:5000/api/ssh/start-ssh");
       console.log("SSH Response:", response.data);
     } catch (error) {
       console.error("Error connecting to SSH:", error.response?.data || error.message);
