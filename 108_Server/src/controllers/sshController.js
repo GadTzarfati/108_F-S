@@ -19,7 +19,7 @@ export const runDockerSSH = (req, res) => {
 
     console.log(`Container started: ${stdout || stderr}`);
 
-    // שליפת ה-ID של הקונטיינר
+    //    ID      הקונטיינר
     const getContainerIdCommand = `docker ps -q -f ancestor=ubuntu-net-tools`;
     exec(getContainerIdCommand, (idError, containerId) => {
       if (idError || !containerId.trim()) {
@@ -43,20 +43,21 @@ export const runDockerSSH = (req, res) => {
 
         console.log(`SSH service started: ${sshStdout || sshStderr}`);
 
-        // פתיחת חלון CMD נוסף במיקום הראשי של המחשב
-        const openCmdCommand = `start cmd /k "cd /Users"`;
+        // פתיחת חלון CMD נוסף לחיבור ל-SSH
+        const openCmdCommand = `start cmd /k "ssh root@localhost -p 2222"`;
         exec(openCmdCommand, (cmdError) => {
           if (cmdError) {
-            console.error(`Error opening CMD: ${cmdError.message}`);
+            console.error(`Error opening CMD for SSH: ${cmdError.message}`);
             return res.status(500).json({
-              message: 'Failed to open CMD window',
+              message: 'Failed to open CMD for SSH connection',
               error: cmdError.message,
             });
           }
 
-          console.log('CMD window opened in root directory');
+          console.log('CMD window opened for SSH connection');
           res.json({
             message: 'Docker container started, SSH service initiated, and CMD window opened',
+            connectionInfo: 'Connect using: ssh root@localhost -p 2222',
           });
         });
       });
