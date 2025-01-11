@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import path from 'path';
 
 export const runDockerSSH = (req, res) => {
-  const dockerPath = '../../Dockerfile';
+  const dockerPath = '../../myDocker';
 
   // משתנה לפקודת הפעלת הקונטיינר
   const runContainerCommand = `cd /d ${dockerPath} && docker run -p 2222:22 -itd ubuntu-net-tools`;
