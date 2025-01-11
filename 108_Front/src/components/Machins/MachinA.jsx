@@ -4,7 +4,7 @@ import './MachinsStyle/Machines.css';
 import ButtonSSH from "../All-function/ButtonSSH";
 import ButtonTELNET from "../All-function/ButtonTELNET";
 import ButtonCLI from "../All-function/ButtonCLI";
-import  BackButton  from "../All-function/BackButton";
+import BackButton from "../All-function/BackButton";
 
 const MachinA = () => {
     const location = useLocation();
@@ -16,7 +16,7 @@ const MachinA = () => {
 
     return (
         <div className="product-details-container">
-            <BackButton/>
+            <BackButton />
             <img
                 src={product.image}
                 alt={product.name}
@@ -25,9 +25,9 @@ const MachinA = () => {
             <h1 className="product-details-title">{product.name}</h1>
             <p className="product-details-description">{product.description}</p>
             <div className="button-container">
-            <ButtonSSH />
-            <ButtonTELNET />
-            <ButtonCLI />
+                <ButtonSSH />
+                <ButtonTELNET />
+                <ButtonCLI />
             </div>
         </div>
     );
