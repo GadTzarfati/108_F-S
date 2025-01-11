@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import ButtonSSH from "../All-function/ButtonSSH";
+import  BackButton  from "../All-function/BackButton";
 
 const MachinB = () => {
     const location = useLocation();
@@ -12,6 +13,7 @@ const MachinB = () => {
 
     return (
         <div className="product-details-container">
+            <BackButton/>
             <img
                 src={product.image}
                 alt={product.name}

@@ -4,6 +4,7 @@ import './MachinsStyle/Machines.css';
 import ButtonSSH from "../All-function/ButtonSSH";
 import ButtonTELNET from "../All-function/ButtonTELNET";
 import ButtonCLI from "../All-function/ButtonCLI";
+import  BackButton  from "../All-function/BackButton";
 
 const MachinA = () => {
     const location = useLocation();
@@ -15,6 +16,7 @@ const MachinA = () => {
 
     return (
         <div className="product-details-container">
+            <BackButton/>
             <img
                 src={product.image}
                 alt={product.name}
