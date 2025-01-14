@@ -1,54 +1,48 @@
-import os from 'os';
+import { exec } from 'child_process';
 
 /**
- * Handles the request to get the connection information.
- * This function retrieves the local IP address of the server and responds with
- * the IP address and a predefined port (7070). If no external IP address is found,
- * it responds with an error message.
+ * Handles the request to get the localhost and port from Ubuntu 22.04.5 LTS
  * 
+ * This function runs `ifconfig` on the Ubuntu system through WSL, extracts the
+ * localhost IP address and predefined port (7070), and returns it as a JSON response.
+ *
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
- * 
- * @returns {void} - Sends a JSON response with the IP address and port, or an error message.
- * 
- * @example
- * // Example response when an external IP address is found:
- * // HTTP/1.1 200 OK
- * // Content-Type: application/json
- * // {
- * //   "ip": "192.168.1.2",
- * //   "port": 7070
- * // }
- * 
- * @example
- * // Example response when no external IP address is found:
- * // HTTP/1.1 500 Internal Server Error
- * // Content-Type: application/json
- * // {
- * //   "error": "No external IP address found"
- * // }
  */
 export const getConnectionInfo = (req, res) => {
-    // Function to get the local IP address
-    const getLocalIPAddress = () => {
-        const interfaces = os.networkInterfaces();
-        for (const interfaceName in interfaces) {
-            for (const iface of interfaces[interfaceName]) {
-                if (iface.family === 'IPv4' && !iface.internal) {
-                    return iface.address; // Return the external IPv4 address
-                }
-            }
+    const command = `wsl -d Ubuntu-22.04 ifconfig`;
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing command: ${error.message}`);
+            return res.status(500).json({ error: 'Failed to retrieve connection info' });
         }
-        return null; // Return null if no external IP address is found
-    };
 
-    const ip = getLocalIPAddress(); // Get the local IP address
+        if (stderr) {
+            console.error(`Command stderr: ${stderr}`);
+            return res.status(500).json({ error: 'Failed to retrieve connection info' });
+        }
 
-    if (ip) {
-        console.log(`Retrieved IP: ${ip}`);
-        res.status(200).json({ ip, port: 7070 }); // Respond with IP and port
-    } else {
-        console.error('No external IP address found');
-        res.status(500).json({ error: 'No external IP address found' }); // Respond with an error
-    }
+        // Regular expression to extract the IP address
+        const ipRegex = /inet (\d+\.\d+\.\d+\.\d+)/g;
+        const matches = [];
+        let match;
+
+        // Collect all IP addresses
+        while ((match = ipRegex.exec(stdout)) !== null) {
+            matches.push(match[1]);
+        }
+
+        if (matches.length === 0) {
+            console.error('No IP address found in ifconfig output');
+            return res.status(500).json({ error: 'No IP address found' });
+        }
+
+        // Use the first IP found (external IP)
+        const ip = matches[0];
+        const port = 7070; // Predefined port
+
+        console.log(`Retrieved IP: ${ip}, Port: ${port}`);
+        res.status(200).json({ ip, port });
+    });
 };
