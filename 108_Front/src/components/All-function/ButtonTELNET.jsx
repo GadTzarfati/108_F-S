@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './ButtonTELNET.css';
+
 const ButtonTELNET = ({ onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState({ ip: "N/A", port: "N/A" });
@@ -18,6 +19,9 @@ const ButtonTELNET = ({ onClick }) => {
       const result = await response.json();
       setData(result); // שמירת המידע
       setIsOpen(true); // פתיחת הפופ-אפ
+
+      // שליחת נתונים ל-main process (Electron)
+      window.electron.openPutty(result);
     } catch (error) {
       console.error("Error fetching Telnet info:", error.message);
       alert("שגיאה בהבאת המידע מהשרת. אנא בדוק את החיבור.");
