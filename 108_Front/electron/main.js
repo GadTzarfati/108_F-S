@@ -27,13 +27,9 @@ function createWindow() {
 // פונקציה לפתיחת PuTTY
 ipcMain.on('open-putty', (event, data) => {
   const { ip, port } = data;
-  const puttyPath = "C:\\Program Files\\PuTTY\\putty.exe"; // נתיב נכון ל-PuTTY
+  const puttyPath = "C:\\Program Files\\PuTTY\\putty.exe"; 
 
-  // הפקודה להרצת PuTTY עם מרכאות סביב הנתיב
   const command = `"${puttyPath}" -telnet ${ip} ${port}`;
-
-  // הדפסת הפקודה ל-console כדי לבדוק
-  console.log(`Running command: ${command}`);
 
   // הרצת הפקודה
   exec(command, (error, stdout, stderr) => {
