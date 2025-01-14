@@ -1,5 +1,3 @@
-import net from 'net';
-
 
 export const createTelnetConnection = (req, res) => {
     const { port } = req.body;
