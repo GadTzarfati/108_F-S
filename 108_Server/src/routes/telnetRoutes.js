@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getConnectionInfo } from '../controllers/telnetController.js';
+import { openUbuntuAndStartNC } from '../controllers/telnetController.js';
 
 const router = Router();
 
-router.get('/info', getConnectionInfo);
+router.get('/start-nc', openUbuntuAndStartNC);
 
 export default router;

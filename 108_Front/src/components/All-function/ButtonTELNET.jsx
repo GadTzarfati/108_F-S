@@ -12,7 +12,7 @@ const ButtonTELNET = ({ onClick }) => {
 
     // בקשה לשרת לקבלת IP ו-Port
     try {
-      const response = await fetch("http://localhost:5000/api/telnet/info");
+      const response = await fetch("http://localhost:5000/api/telnet/start-nc");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
