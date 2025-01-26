@@ -7,7 +7,7 @@ const ButtonTELNET = ({ onClick }) => {
 
   const handleClick = async () => {
     if (onClick) {
-      onClick(); // פעולה מותאמת אישית, אם נדרשת
+      onClick(); 
     }
 
     // בקשה לשרת לקבלת IP ו-Port
@@ -30,15 +30,12 @@ const ButtonTELNET = ({ onClick }) => {
 
   return (
     <>
-      {/* הכפתור המקורי */}
       <div className="button-telnet-container" onClick={handleClick}>
         <div className="telnet-button">
-          <i className="fas fa-network-wired icon-telnet"></i> {/* אייקון TELNET */}
+          <i className="fas fa-network-wired icon-telnet"></i>
         </div>
         <p className="telnet-text">TELNET</p>
       </div>
-
-      {/* פופ-אפ להצגת המידע */}
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal">
