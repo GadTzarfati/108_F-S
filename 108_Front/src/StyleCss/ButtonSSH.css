@@ -2,43 +2,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1px; /* רווח קטן יותר בין האייקון לטקסט */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* אפקט אחיד */
+    gap: 1px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
   }
   
   .button-ssh-container:hover {
-    transform: scale(1.1); /* הגדלת כל המכולה */
+    transform: scale(1.1); 
   }
   
   .ssh-button {
-    background: linear-gradient(135deg, #2093D2, #5d2b7a); /* צבעי האתר */
+    background: linear-gradient(135deg, #2093D2, #5d2b7a); 
     border: none;
-    border-radius: 50%; /* עיגול מושלם */
+    border-radius: 50%; 
     width: 100px;
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff; /* צבע האייקון */
-    font-size: 36px; /* גודל האייקון */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* צל בסיסי */
+    color: #ffffff;
+    font-size: 36px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .button-ssh-container:hover .ssh-button {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* צל חזק יותר */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
   }
   
   .ssh-text {
-    font-size: 18px; /* גודל טקסט */
-    font-weight: bold; /* הדגשה */
-    color: #ffffff; /* צבע טקסט */
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #ffffff; 
     text-align: center;
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   }
   
   .button-ssh-container:hover .ssh-text {
-    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* צל */
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); 
   }
   

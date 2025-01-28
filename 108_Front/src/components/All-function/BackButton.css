@@ -1,8 +1,8 @@
 .back-button {
-    background: linear-gradient(to right, #2093D2, #824199); /* צבעי האתר */
-    color: white; /* צבע הטקסט */
+    background: linear-gradient(to right, #2093D2, #824199); 
+    color: white; 
     border: none;
-    border-radius: 8px; /* עיגול פינות */
+    border-radius: 8px; 
     padding: 5px 10px;
     font-size: 14px;
     position: fixed;
@@ -10,17 +10,17 @@
     left: 20px;
     z-index: 1000;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* צל עדין */
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* האטה של האנימציה */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease; 
 }
 
 .back-button:hover {
-    transform: scale(1.1); /* הגדלה עדינה יותר */
-    box-shadow: 0 0 10px #2093D2, 0 0 20px #824199; /* אפקט ניאון */
-    opacity: 0.95; /* שקיפות קלה */
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #2093D2, 0 0 20px #824199; 
+    opacity: 0.95; 
 }
 
 .back-button:active {
-    transform: scale(1.05); /* הקטנה קלה בעת לחיצה */
-    box-shadow: 0 0 8px #2093D2, 0 0 16px #824199; /* אפקט ניאון בלחיצה */
+    transform: scale(1.05); 
+    box-shadow: 0 0 8px #2093D2, 0 0 16px #824199; 
 }

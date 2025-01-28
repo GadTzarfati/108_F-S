@@ -12,7 +12,7 @@
 }
 
 .telnet-button {
-    background: linear-gradient(135deg, #4CAF50, #8BC34A); /* צבעים ייחודיים ל-TELNET */
+    background: linear-gradient(135deg, #4CAF50, #8BC34A); 
     border: none;
     border-radius: 50%;
     width: 100px;

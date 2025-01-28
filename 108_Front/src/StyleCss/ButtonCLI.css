@@ -1,12 +1,11 @@
-/* אייקון CLI */
-.button-cli-container {
+  .button-cli-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1px;
     cursor: pointer;
-    transform: scale(1); /* חזרה לגודל רגיל */
-    transition: transform 0.3s ease-in-out; /* חלק גם כשה-Hover יורד */
+    transform: scale(1); 
+    transition: transform 0.3s ease-in-out;
   }
   
   .button-cli-container:hover {
@@ -15,7 +14,7 @@
   }
   
   .cli-button {
-    background: linear-gradient(135deg, #FF9800, #FFC107); /* צבעים ייחודיים ל-CLI */
+    background: linear-gradient(135deg, #FF9800, #FFC107);
     border: none;
     border-radius: 50%;
     width: 100px;
@@ -40,29 +39,29 @@
     text-align: center;
   }
   
-  /* חלון CLI */
+
   .cli-container {
-    background-color: #000; /* רקע שחור */
-    color: #0f0; /* טקסט ירוק */
+    background-color: #000;
+    color: #0f0;
     padding: 15px;
     border-radius: 10px;
-    font-family: "Courier New", monospace; /* פונט כמו ב-Terminal */
-    width: 70%; /* פרופורציונלי למסכים גדולים */
-    max-width: 800px; /* מגבלת רוחב */
-    height: 400px; /* גובה פרופורציונלי */
+    font-family: "Courier New", monospace;
+    width: 70%; 
+    max-width: 800px;
+    height: 400px;
     margin: 20px auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 160px; /* מיקום מתחת לאייקון */
+    top: 160px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     border: 1px solid #444;
   }
   
-  /* כותרת ה-CLI */
+  
   .cli-header {
     display: flex;
     justify-content: space-between;
@@ -84,7 +83,7 @@
     transform: scale(1.2);
   }
   
-  /* פלט הפקודות */
+  
   .cli-output {
     flex: 1;
     overflow-y: auto;
@@ -97,7 +96,7 @@
     border-top: 1px solid #444;
   }
   
-  /* טופס להזנת פקודות */
+  
   .cli-input-form {
     display: flex;
     gap: 10px;
