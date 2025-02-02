@@ -1,0 +1,36 @@
+@import url('./General.css');
+@import url('./LogInview.css');
+@import url('./MachinesSelect.css');
+@import url('./ButtonSSH.css');
+@import url('./ButtonCLI.css');
+@import url('./ButtonTELNET.css');
+@import url('../components/Machins/MachinsStyle/Machines.css');
+
+/* עיצוב בסיסי לכל הפרויקט */
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button-primary {
+  background-color: blue;
+  color: white;
+}
+
+.button-secondary {
+  background-color: grey;
+  color: white;
+} */

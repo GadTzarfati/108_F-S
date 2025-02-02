@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import './MachinsStyle/Machines.css';
 import ButtonSSH from "../All-function/ButtonSSH";
 import ButtonTELNET from "../All-function/ButtonTELNET";
 import ButtonCLI from "../All-function/ButtonCLI";
